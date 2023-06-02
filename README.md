@@ -39,7 +39,7 @@ export default App;
 | Property            | Type                       | Default | Description                                       |
 | :------------------ | :------------------------- | :------ | :------------------------------------------------ |
 | text                | String                     |         | The text which will have the glitch effect.       |
-| speed               | Number                     | `30`    | The speed at which the letters change             |
+| speed               | Number                     | `30 ms` | The speed at which the letters change             |
 | letterCase          | `lowercase` or `uppercase` |         | The alphabet case which can be used.              |
 | className           | String                     |         | Text styles.                                      |
 | includeSpecialChars | Boolean                    | `false` | Flag to whether include special characters or not |
