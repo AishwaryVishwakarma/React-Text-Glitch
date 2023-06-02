@@ -1,6 +1,6 @@
 {
   "name": "react-text-glitch-effect",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Add glitch effect to your text",
   "main": "src/index.ts",
   "homepage": "https://github.com/AishwaryVishwakarma/react-text-glitch-effect",
@@ -16,7 +16,9 @@
   },
   "keywords": [
     "react",
-    "text-glitch"
+    "text-glitch-effect",
+    "effect",
+    "glitch"
   ],
   "author": "Aishwary Vishwakarma",
   "license": "MIT",
