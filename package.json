@@ -1,11 +1,16 @@
 {
   "name": "react-text-glitch-effect",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Add glitch effect to your text",
   "main": "src/index.ts",
+  "homepage": "https://github.com/AishwaryVishwakarma/react-text-glitch-effect",
   "files": [
     "src/**/*"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AishwaryVishwakarma/react-text-glitch-effect"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
