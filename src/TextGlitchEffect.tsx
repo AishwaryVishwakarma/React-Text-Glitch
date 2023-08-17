@@ -1,16 +1,25 @@
 import React from 'react';
 
+const LETTERS = 'abcdefghijklmnopqrstuvwxyz';
+
+const SPECIAL_CHARS = '~`!@#$%^&*()-+=/*[]{}:<>?';
+
+const NUMBERS = '0123456789';
+
 interface Props {
   text: string;
   speed?: number;
   letterCase?: 'lowercase' | 'uppercase';
   className?: string;
-  includeSpecialChars?: boolean;
+  type?: 'alphabets' | 'specialchars' | 'numbers' | 'alphanumeric';
 }
 
-const LETTERS = 'abcdefghijklmnopqrstuvwxyz';
-
-const SPECIAL_CHARS = '~`!@#$%^&*()-+=/*[]{}:<>?';
+const TYPES = {
+  ALPHABETS: 'alphabets',
+  NUMBERS: 'numbers',
+  SPECIAL_CHARS: 'specialchars',
+  ALPHA_NUMERIC: 'alphanumeric',
+} as const;
 
 let interval: any = null;
 
@@ -19,14 +28,16 @@ export const TextGlitchEffect: React.FC<Props> = ({
   speed = 30,
   letterCase = 'uppercase',
   className,
-  includeSpecialChars = false,
+  type = 'alphabets',
 }) => {
-  const startGlitchEffect = (event: any) => {
+  const startGlitchEffect = (
+    event: React.MouseEventHandler<HTMLDivElement>
+  ): void => {
     let iteration = 0;
 
     clearInterval(interval);
 
-    interval = setInterval(() => {
+    interval = setInterval((): void => {
       event.target.innerText = event.target.innerText
         .split('')
         .map((alphabet: string, index: number) => {
@@ -34,9 +45,23 @@ export const TextGlitchEffect: React.FC<Props> = ({
             return event.target.dataset.value[index];
           }
 
-          const letters = includeSpecialChars
-            ? LETTERS + SPECIAL_CHARS
-            : LETTERS;
+          let letters: string = LETTERS;
+
+          // Assigning the letters string based on the type
+          switch (type) {
+            case (type = TYPES.ALPHABETS):
+              letters = LETTERS;
+              break;
+            case (type = TYPES.NUMBERS):
+              letters = NUMBERS;
+              break;
+            case (type = TYPES.SPECIAL_CHARS):
+              letters = SPECIAL_CHARS;
+              break;
+            case (type = TYPES.ALPHA_NUMERIC):
+              letters = LETTERS + NUMBERS;
+              break;
+          }
 
           const individualLetter =
             letters[Math.floor(Math.random() * letters.length)];
@@ -45,7 +70,8 @@ export const TextGlitchEffect: React.FC<Props> = ({
             ? individualLetter.toUpperCase()
             : individualLetter.toLowerCase();
 
-          return alphabet; //Build was failing because of the unused variable
+          //Build was failing because of the unused variable
+          return alphabet;
         })
         .join('');
 
@@ -62,6 +88,9 @@ export const TextGlitchEffect: React.FC<Props> = ({
       data-value={text}
       onMouseEnter={startGlitchEffect}
       className={className}
+      style={{
+        fontVariantNumeric: 'tabular-nums',
+      }}
     >
       {text}
     </div>
