@@ -30,9 +30,7 @@ export const TextGlitchEffect: React.FC<Props> = ({
   className,
   type = 'alphabets',
 }) => {
-  const startGlitchEffect = (
-    event: React.MouseEventHandler<HTMLDivElement>
-  ): void => {
+  const startGlitchEffect = (event: any): void => {
     let iteration = 0;
 
     clearInterval(interval);
@@ -49,16 +47,16 @@ export const TextGlitchEffect: React.FC<Props> = ({
 
           // Assigning the letters string based on the type
           switch (type) {
-            case (type = TYPES.ALPHABETS):
+            case TYPES.ALPHABETS:
               letters = LETTERS;
               break;
-            case (type = TYPES.NUMBERS):
+            case TYPES.NUMBERS:
               letters = NUMBERS;
               break;
-            case (type = TYPES.SPECIAL_CHARS):
+            case TYPES.SPECIAL_CHARS:
               letters = SPECIAL_CHARS;
               break;
-            case (type = TYPES.ALPHA_NUMERIC):
+            case TYPES.ALPHA_NUMERIC:
               letters = LETTERS + NUMBERS;
               break;
           }
@@ -70,7 +68,7 @@ export const TextGlitchEffect: React.FC<Props> = ({
             ? individualLetter.toUpperCase()
             : individualLetter.toLowerCase();
 
-          //Build was failing because of the unused variable
+          //Build will fail because of the unused variable
           return alphabet;
         })
         .join('');
