@@ -2,8 +2,6 @@
 
 ## Install
 
-- using npm
-
 ```bash
 npm install react-text-glitch-effect
 ```
